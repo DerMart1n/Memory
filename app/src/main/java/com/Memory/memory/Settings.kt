@@ -9,24 +9,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
-class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener
+class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener
 {
     private val prefsFilename = "com.memory.settings.prefs"
     private val timeFile = "time"
     private val triesFile = "tries"
     private val darkModeFile = "dark_mode"
+    private val difficultyFile = "difficulty"
 
     private lateinit var prefs: SharedPreferences
 
     private var time: Int = 0
     private var tries: Int = 0
     private var darkmode: Boolean = false
+    private var difficulty: String = "medium"
 
-    // the settings slider, switch and button
+
+    // the settings slider, switch, button and radioButtons
     private lateinit var timeSlider: SeekBar
     private lateinit var triesSlider: SeekBar
     private lateinit var darkModeSwitch: Switch
     private lateinit var menuButton: Button
+    private lateinit var difficultyButtons: RadioGroup
 
     // the textView above the sliders
     private lateinit var timeText: TextView
@@ -43,12 +47,14 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
         tries = prefs.getInt(triesFile, 30)
         // 0: lightmode, 1: darkmode
         darkmode = prefs.getBoolean(darkModeFile, false)
+        difficulty = prefs.getString(difficultyFile, "medium").toString()
 
         // the settings slider, switch and button
         timeSlider = findViewById(R.id.time_slider)
         triesSlider = findViewById(R.id.tries_slider)
         darkModeSwitch = findViewById(R.id.dark_mode_switch)
         menuButton = findViewById(R.id.menu_button_settings)
+        difficultyButtons = findViewById(R.id.difficultyRadioGroup)
 
         // the textView above the sliders
         timeText = findViewById(R.id.time_slider_text)
@@ -61,11 +67,19 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
         triesText.text = "Tries: $tries"
         darkModeSwitch.isChecked = darkmode
 
+        when(difficulty) {
+            "easy" -> findViewById<RadioButton>(R.id.radioButtonEasy).isChecked = true
+            "medium" -> findViewById<RadioButton>(R.id.radioButtonMedium).isChecked = true
+            "hard" -> findViewById<RadioButton>(R.id.radioButtonHard).isChecked = true
+            else -> {findViewById<RadioButton>(R.id.radioButtonEasy).isChecked = true}
+        }
+
         // add listeners to the sliders, switch and button
         timeSlider.setOnSeekBarChangeListener(this)
         triesSlider.setOnSeekBarChangeListener(this)
         darkModeSwitch.setOnCheckedChangeListener(this)
         menuButton.setOnClickListener {returnToMenu()}
+        difficultyButtons.setOnCheckedChangeListener(this)
 
         colorMode()
     }
@@ -111,7 +125,24 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
         this.startActivity(menuIntent)
     }
 
+    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+        when(checkedId)
+        {
+            R.id.radioButtonEasy -> {
+                difficulty = "easy"
+            }
+            R.id.radioButtonMedium -> {
+                difficulty = "medium"
+            }
+            R.id.radioButtonHard -> {
+                difficulty = "hard"
+            }
+        }
+        prefs.edit().putString(difficultyFile, difficulty).apply()
+    }
+
     // these functions have to implemented for the seekbars
     override fun onStartTrackingTouch(seekBar: SeekBar?) {}
     override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+
 }

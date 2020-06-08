@@ -15,9 +15,11 @@ class MainActivity : AppCompatActivity()
 
     private val prefsFilename = "com.memory.settings.prefs"
     private val darkModeFile = "dark_mode"
+    private val difficultyFile = "difficulty"
 
     private var prefs: SharedPreferences? = null
     private var darkMode: Boolean = false
+    private var difficulty: String = "medium"
 
     private lateinit var newGameButton: Button
     private lateinit var settingsButton: Button
@@ -35,14 +37,23 @@ class MainActivity : AppCompatActivity()
 
         prefs = getSharedPreferences(prefsFilename, 0)
         darkMode = prefs?.getBoolean(darkModeFile, false)!!
+        difficulty = prefs?.getString(difficultyFile, "medium")!!
 
         colorMode()
     }
     // starts a new game by starting the game activity
     private fun newGameFunc()
     {
-        val gameIntent = Intent(this, Game::class.java)
-        this.startActivity(gameIntent)
+        //val gameIntent: Intent = when(difficulty)
+        this.startActivity (
+            when(difficulty)
+            {
+                "easy" -> Intent(this, GameEasy::class.java)
+                "medium" -> Intent(this, GameMedium::class.java)
+                "hard" -> Intent(this, GameHard::class.java)
+                else -> { Intent(this, GameMedium::class.java) }
+            }
+        )
     }
     // shows the settings page
     private fun settingsFunc()

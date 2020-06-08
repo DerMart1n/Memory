@@ -17,7 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
 
-class Game : AppCompatActivity() {
+class GameHard : AppCompatActivity() {
 
     private val prefsFilename = "com.memory.settings.prefs"
     private val timeFile = "time"
@@ -54,58 +54,90 @@ class Game : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        setContentView(R.layout.activity_game_hard)
 
         // the cards to turn
-        val b1 = findViewById<Button>(R.id.b1)
-        val b2 = findViewById<Button>(R.id.b2)
-        val b3 = findViewById<Button>(R.id.b3)
-        val b4 = findViewById<Button>(R.id.b4)
-        val b5 = findViewById<Button>(R.id.b5)
-        val b6 = findViewById<Button>(R.id.b6)
-        val b7 = findViewById<Button>(R.id.b7)
-        val b8 = findViewById<Button>(R.id.b8)
-        val b9 = findViewById<Button>(R.id.b9)
-        val b10 = findViewById<Button>(R.id.b10)
-        val b11 = findViewById<Button>(R.id.b11)
-        val b12 = findViewById<Button>(R.id.b12)
-        val b13 = findViewById<Button>(R.id.b13)
-        val b14 = findViewById<Button>(R.id.b14)
-        val b15 = findViewById<Button>(R.id.b15)
-        val b16 = findViewById<Button>(R.id.b16)
-        val b17 = findViewById<Button>(R.id.b17)
-        val b18 = findViewById<Button>(R.id.b18)
-        val b19 = findViewById<Button>(R.id.b19)
-        val b20 = findViewById<Button>(R.id.b20)
-        val b21 = findViewById<Button>(R.id.b21)
-        val b22 = findViewById<Button>(R.id.b22)
-        val b23 = findViewById<Button>(R.id.b23)
-        val b24 = findViewById<Button>(R.id.b24)
+        val bh1 = findViewById<Button>(R.id.bh1)
+        val bh2 = findViewById<Button>(R.id.bh2)
+        val bh3 = findViewById<Button>(R.id.bh3)
+        val bh4 = findViewById<Button>(R.id.bh4)
+        val bh5 = findViewById<Button>(R.id.bh5)
+        val bh6 = findViewById<Button>(R.id.bh6)
+        val bh7 = findViewById<Button>(R.id.bh7)
+        val bh8 = findViewById<Button>(R.id.bh8)
+        val bh9 = findViewById<Button>(R.id.bh9)
+        val bh10 = findViewById<Button>(R.id.bh10)
+        val bh11 = findViewById<Button>(R.id.bh11)
+        val bh12 = findViewById<Button>(R.id.bh12)
+        val bh13 = findViewById<Button>(R.id.bh13)
+        val bh14 = findViewById<Button>(R.id.bh14)
+        val bh15 = findViewById<Button>(R.id.bh15)
+        val bh16 = findViewById<Button>(R.id.bh16)
+        val bh17 = findViewById<Button>(R.id.bh17)
+        val bh18 = findViewById<Button>(R.id.bh18)
+        val bh19 = findViewById<Button>(R.id.bh19)
+        val bh20 = findViewById<Button>(R.id.bh20)
+        val bh21 = findViewById<Button>(R.id.bh21)
+        val bh22 = findViewById<Button>(R.id.bh22)
+        val bh23 = findViewById<Button>(R.id.bh23)
+        val bh24 = findViewById<Button>(R.id.bh24)
+        val bh25 = findViewById<Button>(R.id.bh25)
+        val bh26 = findViewById<Button>(R.id.bh26)
+        val bh27 = findViewById<Button>(R.id.bh27)
+        val bh28 = findViewById<Button>(R.id.bh28)
+        val bh29 = findViewById<Button>(R.id.bh29)
+        val bh30 = findViewById<Button>(R.id.bh30)
+        val bh31 = findViewById<Button>(R.id.bh31)
+        val bh32 = findViewById<Button>(R.id.bh32)
+        val bh33 = findViewById<Button>(R.id.bh33)
+        val bh34 = findViewById<Button>(R.id.bh34)
+        val bh35 = findViewById<Button>(R.id.bh35)
+        val bh36 = findViewById<Button>(R.id.bh36)
+        val bh37 = findViewById<Button>(R.id.bh37)
+        val bh38 = findViewById<Button>(R.id.bh38)
+        val bh39 = findViewById<Button>(R.id.bh39)
+        val bh40 = findViewById<Button>(R.id.bh40)
 
-        b1.setOnClickListener { bFunc(1) }
-        b2.setOnClickListener { bFunc(2) }
-        b3.setOnClickListener { bFunc(3) }
-        b4.setOnClickListener { bFunc(4) }
-        b5.setOnClickListener { bFunc(5) }
-        b6.setOnClickListener { bFunc(6) }
-        b7.setOnClickListener { bFunc(7) }
-        b8.setOnClickListener { bFunc(8) }
-        b9.setOnClickListener { bFunc(9) }
-        b10.setOnClickListener { bFunc(10) }
-        b11.setOnClickListener { bFunc(11) }
-        b12.setOnClickListener { bFunc(12) }
-        b13.setOnClickListener { bFunc(13) }
-        b14.setOnClickListener { bFunc(14) }
-        b15.setOnClickListener { bFunc(15) }
-        b16.setOnClickListener { bFunc(16) }
-        b17.setOnClickListener { bFunc(17) }
-        b18.setOnClickListener { bFunc(18) }
-        b19.setOnClickListener { bFunc(19) }
-        b20.setOnClickListener { bFunc(20) }
-        b21.setOnClickListener { bFunc(21) }
-        b22.setOnClickListener { bFunc(22) }
-        b23.setOnClickListener { bFunc(23) }
-        b24.setOnClickListener { bFunc(24) }
+        bh1.setOnClickListener { bFunc(1) }
+        bh2.setOnClickListener { bFunc(2) }
+        bh3.setOnClickListener { bFunc(3) }
+        bh4.setOnClickListener { bFunc(4) }
+        bh5.setOnClickListener { bFunc(5) }
+        bh6.setOnClickListener { bFunc(6) }
+        bh7.setOnClickListener { bFunc(7) }
+        bh8.setOnClickListener { bFunc(8) }
+        bh9.setOnClickListener { bFunc(9) }
+        bh10.setOnClickListener { bFunc(10) }
+        bh11.setOnClickListener { bFunc(11) }
+        bh12.setOnClickListener { bFunc(12) }
+        bh13.setOnClickListener { bFunc(13) }
+        bh14.setOnClickListener { bFunc(14) }
+        bh15.setOnClickListener { bFunc(15) }
+        bh16.setOnClickListener { bFunc(16) }
+        bh17.setOnClickListener { bFunc(17) }
+        bh18.setOnClickListener { bFunc(18) }
+        bh19.setOnClickListener { bFunc(19) }
+        bh20.setOnClickListener { bFunc(20) }
+        bh21.setOnClickListener { bFunc(21) }
+        bh22.setOnClickListener { bFunc(22) }
+        bh23.setOnClickListener { bFunc(23) }
+        bh24.setOnClickListener { bFunc(24) }
+        bh25.setOnClickListener { bFunc(25) }
+        bh26.setOnClickListener { bFunc(26) }
+        bh27.setOnClickListener { bFunc(27) }
+        bh28.setOnClickListener { bFunc(28) }
+        bh29.setOnClickListener { bFunc(29) }
+        bh30.setOnClickListener { bFunc(30) }
+        bh31.setOnClickListener { bFunc(31) }
+        bh32.setOnClickListener { bFunc(32) }
+        bh33.setOnClickListener { bFunc(33) }
+        bh34.setOnClickListener { bFunc(34) }
+        bh35.setOnClickListener { bFunc(35) }
+        bh36.setOnClickListener { bFunc(36) }
+        bh37.setOnClickListener { bFunc(37) }
+        bh38.setOnClickListener { bFunc(38) }
+        bh39.setOnClickListener { bFunc(39) }
+        bh40.setOnClickListener { bFunc(40) }
 
         // get settings from preferences
         prefs = getSharedPreferences(prefsFilename, 0)
@@ -138,17 +170,17 @@ class Game : AppCompatActivity() {
     {
         buttonCol = if (darkmode) ContextCompat.getColor(this, R.color.colorPrimaryDark) else ContextCompat.getColor(this, R.color.buttonColForLight)
         // change button color
-        for (i in 1..24) {
+        for (i in 1..40) {
             val b = buttonFromNum(i)
             b.setBackgroundColor(buttonCol)
         }
         // change layout background color
         val bgCol = if (darkmode) ContextCompat.getColor(this, R.color.bgColForDark) else ContextCompat.getColor(this, R.color.bgColForLight)
-        val gameLayout: ConstraintLayout = findViewById(R.id.game_layout)
+        val gameLayout: ConstraintLayout = findViewById(R.id.game_layout_hard)
         gameLayout.setBackgroundColor(bgCol)
 
         // change background color of the endTextView
-        val endTextView: TextView = findViewById(R.id.endGameText)
+        val endTextView: TextView = findViewById(R.id.endGameTextHard)
         endTextView.setBackgroundColor(buttonCol)
 
     }
@@ -179,10 +211,10 @@ class Game : AppCompatActivity() {
         // prevent the counter from continuing
         runCounter = false
 
-        val endTextView: TextView = findViewById(R.id.endGameText)
+        val endTextView: TextView = findViewById(R.id.endGameTextHard)
         // make the endTextView visible and the cards invisible
         endTextView.visibility = VISIBLE
-        for (i in 1..24)
+        for (i in 1..40)
         {
             val b: Button = buttonFromNum(i)
             b.visibility = INVISIBLE
@@ -192,8 +224,8 @@ class Game : AppCompatActivity() {
         val triesNeeded = prefs?.getInt(triesFile, 40)!! - triesLeft
         when
         {
-            secondsLeft == 0 -> endTextView.text = "$msg\nTries left: $triesLeft\nPairs found: $pairsFound/12"
-            triesLeft == 0 -> endTextView.text = "$msg\nSeconds left: $secondsLeft\nPairs found: $pairsFound/12"
+            secondsLeft == 0 -> endTextView.text = "$msg\nTries left: $triesLeft\nPairs found: $pairsFound/20"
+            triesLeft == 0 -> endTextView.text = "$msg\nSeconds left: $secondsLeft\nPairs found: $pairsFound/20"
             else -> { endTextView.text = "$msg\nTries used: $triesNeeded" }
         }
     }
@@ -201,10 +233,10 @@ class Game : AppCompatActivity() {
     private fun setUp()
     {
         // map the buttons to a randomized list of 12 pairs
-        val valsList: MutableList<Char> = mutableListOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
-        valsList.shuffle()
+        val valsList: MutableList<Char> = mutableListOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't')
+            valsList.shuffle()
 
-        for (i in 1..24) {
+        for (i in 1..40) {
             cardsValMap[i] = valsList[i-1]
         }
 
@@ -235,31 +267,47 @@ class Game : AppCompatActivity() {
     {
         return when(n)
         {
-            1 -> findViewById(R.id.b1)
-            2 -> findViewById(R.id.b2)
-            3 -> findViewById(R.id.b3)
-            4 -> findViewById(R.id.b4)
-            5 -> findViewById(R.id.b5)
-            6 -> findViewById(R.id.b6)
-            7 -> findViewById(R.id.b7)
-            8 -> findViewById(R.id.b8)
-            9 -> findViewById(R.id.b9)
-            10 -> findViewById(R.id.b10)
-            11 -> findViewById(R.id.b11)
-            12 -> findViewById(R.id.b12)
-            13 -> findViewById(R.id.b13)
-            14 -> findViewById(R.id.b14)
-            15 -> findViewById(R.id.b15)
-            16 -> findViewById(R.id.b16)
-            17 -> findViewById(R.id.b17)
-            18 -> findViewById(R.id.b18)
-            19 -> findViewById(R.id.b19)
-            20 -> findViewById(R.id.b20)
-            21 -> findViewById(R.id.b21)
-            22 -> findViewById(R.id.b22)
-            23 -> findViewById(R.id.b23)
-            24 -> findViewById(R.id.b24)
-            else -> { findViewById(R.id.b1) }
+            1 -> findViewById(R.id.bh1)
+            2 -> findViewById(R.id.bh2)
+            3 -> findViewById(R.id.bh3)
+            4 -> findViewById(R.id.bh4)
+            5 -> findViewById(R.id.bh5)
+            6 -> findViewById(R.id.bh6)
+            7 -> findViewById(R.id.bh7)
+            8 -> findViewById(R.id.bh8)
+            9 -> findViewById(R.id.bh9)
+            10 -> findViewById(R.id.bh10)
+            11 -> findViewById(R.id.bh11)
+            12 -> findViewById(R.id.bh12)
+            13 -> findViewById(R.id.bh13)
+            14 -> findViewById(R.id.bh14)
+            15 -> findViewById(R.id.bh15)
+            16 -> findViewById(R.id.bh16)
+            17 -> findViewById(R.id.bh17)
+            18 -> findViewById(R.id.bh18)
+            19 -> findViewById(R.id.bh19)
+            20 -> findViewById(R.id.bh20)
+            21 -> findViewById(R.id.bh21)
+            22 -> findViewById(R.id.bh22)
+            23 -> findViewById(R.id.bh23)
+            24 -> findViewById(R.id.bh24)
+            25 -> findViewById(R.id.bh25)
+            26 -> findViewById(R.id.bh26)
+            27 -> findViewById(R.id.bh27)
+            28 -> findViewById(R.id.bh28)
+            29 -> findViewById(R.id.bh29)
+            30 -> findViewById(R.id.bh30)
+            31 -> findViewById(R.id.bh31)
+            32 -> findViewById(R.id.bh32)
+            33 -> findViewById(R.id.bh33)
+            34 -> findViewById(R.id.bh34)
+            35 -> findViewById(R.id.bh35)
+            36 -> findViewById(R.id.bh36)
+            37 -> findViewById(R.id.bh37)
+            38 -> findViewById(R.id.bh38)
+            39 -> findViewById(R.id.bh39)
+            40 -> findViewById(R.id.bh40)
+            else -> { findViewById(R.id.bh1) }
         }
     }
 
@@ -320,7 +368,7 @@ class Game : AppCompatActivity() {
             println("This card is already flipped up.")
         }
         // if all 12 pairs were found
-        if (foundCards.size == 24)
+        if (foundCards.size == 40)
         {
             endGame("Congratulations,\nyou won!")
         }
