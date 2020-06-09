@@ -2,6 +2,7 @@ package com.Memory.memory
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,9 @@ class MainActivity : AppCompatActivity()
         difficulty = prefs?.getString(difficultyFile, "medium")!!
 
         colorMode()
+
+        // force portrait mode
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
     // starts a new game by starting the game activity
     private fun newGameFunc()

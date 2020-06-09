@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings"
-    android:id="@+id/settings_layout">
+    android:id="@+id/settings_layout"
+    android:screenOrientation="portrait">
 
     <SeekBar
         android:id="@+id/time_slider"

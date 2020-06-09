@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fadingEdge="horizontal|vertical"
-    tools:context=".GameHard">
+    tools:context=".GameHard"
+    android:screenOrientation="portrait">
 
     <TextView
         android:id="@+id/endGameTextHard"

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fadingEdge="horizontal|vertical"
-    tools:context=".GameMedium">
+    tools:context=".GameMedium"
+    android:screenOrientation="portrait">
 
     <Button
         android:id="@+id/menu_button"

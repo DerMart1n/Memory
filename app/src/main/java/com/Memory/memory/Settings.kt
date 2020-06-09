@@ -2,6 +2,7 @@ package com.Memory.memory
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -82,6 +83,9 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
         difficultyButtons.setOnCheckedChangeListener(this)
 
         colorMode()
+
+        // force portrait mode
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
     // write change to file when one of the sliders change
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean)
