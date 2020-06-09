@@ -124,7 +124,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text=" 18"
-            android:textColor="@color/textColorForDark" />
+            android:textColor="@color/textColorForDark"
+            android:buttonTint="@color/colorAccent"/>
 
         <RadioButton
             android:id="@+id/radioButtonMedium"
@@ -133,20 +134,21 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:button="@drawable/circle_button"
             android:text=" 28"
-            android:textColor="@color/textColorForDark" />
+            android:textColor="@color/textColorForDark"
+            android:buttonTint="@color/colorAccent"/>
 
         <RadioButton
             android:id="@+id/radioButtonHard"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:button="@drawable/circle_button"
             android:text=" 40"
-            android:textColor="@color/textColorForDark" />
+            android:textColor="@color/textColorForDark"
+            android:buttonTint="@color/colorAccent"/>
     </RadioGroup>
 
     <TextView
