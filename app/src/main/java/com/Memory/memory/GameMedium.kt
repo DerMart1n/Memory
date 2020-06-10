@@ -21,16 +21,14 @@ import androidx.core.content.ContextCompat
 class GameMedium : AppCompatActivity() {
 
     private val prefsFilename = "com.memory.settings.prefs"
-    private val timeFile = "time"
-    private val triesFile = "tries"
     private val darkModeFile = "dark_mode"
 
     private var prefs: SharedPreferences? = null
 
 
-    private var secondsLeft: Int = 120
+    private var secondsUsed: Int = 0
     // flipping two cards counts as one try
-    private var triesLeft: Int = 40
+    private var triesUsed: Int = 0
 
     private var darkmode: Boolean = false
 
@@ -119,10 +117,6 @@ class GameMedium : AppCompatActivity() {
         // get settings from preferences
         prefs = getSharedPreferences(prefsFilename, 0)
 
-        secondsLeft = prefs?.getInt(timeFile, 120)!! + 1
-        // flipping two cards counts as one try
-        triesLeft = prefs?.getInt(triesFile, 40)!!
-
         darkmode = prefs?.getBoolean(darkModeFile, false)!!
 
         // menu button
@@ -132,6 +126,8 @@ class GameMedium : AppCompatActivity() {
         // assign textViews to the timer and tries variables
         timeText = findViewById(R.id.time_left_text)
         triesText = findViewById(R.id.tries_left_text)
+        timeText.text = "0"
+        triesText.text = "0"
 
         // change button and layout background color according to dark/lightmode
         colorMode()
@@ -172,12 +168,8 @@ class GameMedium : AppCompatActivity() {
         mainHandler.post(object : Runnable {
             override fun run()
             {
-                secondsLeft -= 1
-                timeText.text = secondsLeft.toString()
-                if (secondsLeft <= 0)
-                {
-                    endGame("Time is up.")
-                }
+                secondsUsed += 1
+                timeText.text = secondsUsed.toString()
                 if (runCounter)
                 {
                     mainHandler.postDelayed(this, 999)
@@ -186,7 +178,7 @@ class GameMedium : AppCompatActivity() {
         })
     }
 
-    private fun endGame(msg: String)
+    private fun endGame()
     {
         // prevent the counter from continuing
         runCounter = false
@@ -199,15 +191,8 @@ class GameMedium : AppCompatActivity() {
             val b: Button = buttonFromNum(i)
             b.visibility = INVISIBLE
         }
-        // Set the text of the endTextView to display the msg, cards flipped and the tries/time left
-        val pairsFound = (foundCards.size / 2).toInt()
-        val triesNeeded = prefs?.getInt(triesFile, 40)!! - triesLeft
-        when
-        {
-            secondsLeft == 0 -> endTextView.text = "$msg\nTries left: $triesLeft\nPairs found: $pairsFound/14"
-            triesLeft == 0 -> endTextView.text = "$msg\nSeconds left: $secondsLeft\nPairs found: $pairsFound/14"
-            else -> { endTextView.text = "$msg\nTries used: $triesNeeded" }
-        }
+        // Set the text of the endTextView to display the time and tries used
+        endTextView.text = "Game finished!\nTime: $secondsUsed seconds\nTries: $triesUsed"
     }
 
     private fun setUp()
@@ -219,9 +204,6 @@ class GameMedium : AppCompatActivity() {
         for (i in 1..28) {
             cardsValMap[i] = valsList[i-1]
         }
-
-        // initialise the text for the triesText View
-        triesText.text = triesLeft.toString()
     }
 
     private fun returnToMenu()
@@ -231,16 +213,11 @@ class GameMedium : AppCompatActivity() {
         this.startActivity(menuIntent)
     }
 
-    private fun decreaseTries()
+    private fun increaseTries()
     {
-        triesLeft -= 1
+        triesUsed += 1
         // update textView
-        triesText.text = triesLeft.toString()
-        // end the game if there are no tries left
-        if (triesLeft <= 0)
-        {
-            endGame("You have no tries left.")
-        }
+        triesText.text = triesUsed.toString()
     }
 
     private fun buttonFromNum(n: Int): Button
@@ -312,7 +289,7 @@ class GameMedium : AppCompatActivity() {
                         disappearButtons(flippedCard1, flippedCard2)
                     }
                     // having flipped two cards now, the player has one try less
-                    decreaseTries()
+                    increaseTries()
                 }
                 2 -> { // if the last two flipped cards were not a pair: flip them back down
                     if (cardsValMap[flippedCard1] != cardsValMap[flippedCard2])
@@ -335,10 +312,10 @@ class GameMedium : AppCompatActivity() {
         {
             println("This card is already flipped up.")
         }
-        // if all 12 pairs were found
+        // if all 14 pairs were found
         if (foundCards.size == 28)
         {
-            endGame("Congratulations,\nyou won!")
+            endGame()
         }
     }
 

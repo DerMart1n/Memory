@@ -8,79 +8,20 @@
     android:id="@+id/settings_layout"
     android:screenOrientation="portrait">
 
-    <SeekBar
-        android:id="@+id/time_slider"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hapticFeedbackEnabled="false"
-        android:indeterminate="false"
-        android:max="240"
-        android:progress="120"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_slider_text" />
-
-    <TextView
-        android:id="@+id/time_slider_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="48dp"
-        android:text="Time: 120"
-        android:textColor="@color/textColorForDark"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_text" />
-
-    <TextView
-        android:id="@+id/tries_slider_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:text="Tries: 40"
-        android:textColor="@color/textColorForDark"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_slider" />
-
-    <SeekBar
-        android:id="@+id/tries_slider"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:max="80"
-        android:progress="40"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tries_slider_text" />
-
     <Switch
         android:id="@+id/dark_mode_switch"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:checked="false"
         android:hapticFeedbackEnabled="false"
         android:text="Dark mode"
         android:textColor="@color/textColorForDark"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tries_slider" />
+        app:layout_constraintTop_toBottomOf="@+id/difficultyRadioGroup" />
 
     <TextView
         android:id="@+id/settings_text"
@@ -158,11 +99,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="Number of tiles"
         android:textColor="@color/textColorForDark"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dark_mode_switch" />
+        app:layout_constraintTop_toBottomOf="@+id/settings_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

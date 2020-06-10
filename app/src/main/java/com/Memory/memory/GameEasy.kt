@@ -21,16 +21,13 @@ import androidx.core.content.ContextCompat
 class GameEasy : AppCompatActivity() {
 
     private val prefsFilename = "com.memory.settings.prefs"
-    private val timeFile = "time"
-    private val triesFile = "tries"
     private val darkModeFile = "dark_mode"
 
     private var prefs: SharedPreferences? = null
 
-
-    private var secondsLeft: Int = 120
+    private var secondsUsed: Int = 0
     // flipping two cards counts as one try
-    private var triesLeft: Int = 40
+    private var triesUsed: Int = 0
 
     private var darkmode: Boolean = false
 
@@ -99,10 +96,6 @@ class GameEasy : AppCompatActivity() {
         // get settings from preferences
         prefs = getSharedPreferences(prefsFilename, 0)
 
-        secondsLeft = prefs?.getInt(timeFile, 120)!! + 1
-        // flipping two cards counts as one try
-        triesLeft = prefs?.getInt(triesFile, 40)!!
-
         darkmode = prefs?.getBoolean(darkModeFile, false)!!
 
         // menu button
@@ -113,7 +106,8 @@ class GameEasy : AppCompatActivity() {
         timeText = findViewById(R.id.time_left_text)
         triesText = findViewById(R.id.tries_left_text)
         // initialise the text for the triesText View
-        triesText.text = triesLeft.toString()
+        triesText.text = "0"
+        timeText.text = "0"
 
         // change button and layout background color according to dark/lightmode
         colorMode()
@@ -154,12 +148,8 @@ class GameEasy : AppCompatActivity() {
         mainHandler.post(object : Runnable {
             override fun run()
             {
-                secondsLeft -= 1
-                timeText.text = secondsLeft.toString()
-                if (secondsLeft <= 0)
-                {
-                    endGame("Time is up.")
-                }
+                secondsUsed += 1
+                timeText.text = secondsUsed.toString()
                 if (runCounter)
                 {
                     mainHandler.postDelayed(this, 999)
@@ -168,30 +158,22 @@ class GameEasy : AppCompatActivity() {
         })
     }
 
-    private fun endGame(msg: String)
+    private fun endGame()
     {
         // prevent the counter from continuing
         runCounter = false
 
         val endTextView: TextView = findViewById(R.id.endGameTextEasy)
 
-                    // make the endTextView visible and the cards invisible
-                    endTextView.visibility = VISIBLE
-                    for (i in 1..18)
-                    {
-                        val b: Button = buttonFromNum(i)
-                        b.visibility = INVISIBLE
-                    }
-                // Set the text of the endTextView to display the msg, cards flipped and the tries/time left
-                val pairsFound = (foundCards.size / 2).toInt()
-
-        val triesNeeded = prefs?.getInt(triesFile, 40)!! - triesLeft
-        when
+        // make the endTextView visible and the cards invisible
+        endTextView.visibility = VISIBLE
+        for (i in 1..18)
         {
-            secondsLeft == 0 -> endTextView.text = "$msg\nTries left: $triesLeft\nPairs found: $pairsFound/9"
-            triesLeft == 0 -> endTextView.text = "$msg\nSeconds left: $secondsLeft\nPairs found: $pairsFound/9"
-            else -> { endTextView.text = "$msg\nTries used: $triesNeeded" }
+            val b: Button = buttonFromNum(i)
+            b.visibility = INVISIBLE
         }
+        // Set the text of the endTextView to display the time and tries used
+        endTextView.text = "Game finished!\nTime: $secondsUsed seconds\nTries: $triesUsed"
     }
 
     private fun setUp()
@@ -212,16 +194,11 @@ class GameEasy : AppCompatActivity() {
         this.startActivity(menuIntent)
     }
 
-    private fun decreaseTries()
+    private fun increaseTries()
     {
-        triesLeft -= 1
+        triesUsed += 1
         // update textView
-        triesText.text = triesLeft.toString()
-        // end the game if there are no tries left
-        if (triesLeft <= 0)
-        {
-            endGame("You have no tries left.")
-        }
+        triesText.text = triesUsed.toString()
     }
 
     private fun buttonFromNum(n: Int): Button
@@ -283,7 +260,7 @@ class GameEasy : AppCompatActivity() {
                         disappearButtons(flippedCard1, flippedCard2)
                     }
                     // having flipped two cards now, the player has one try less
-                    decreaseTries()
+                    increaseTries()
                 }
                 2 -> { // if the last two flipped cards were not a pair: flip them back down
                     if (cardsValMap[flippedCard1] != cardsValMap[flippedCard2])
@@ -306,10 +283,10 @@ class GameEasy : AppCompatActivity() {
         {
             println("This card is already flipped up.")
         }
-        // if all 12 pairs were found
+        // if all 9 pairs were found
         if (foundCards.size == 18)
         {
-            endGame("Congratulations,\nyou won!")
+            endGame()
         }
     }
 

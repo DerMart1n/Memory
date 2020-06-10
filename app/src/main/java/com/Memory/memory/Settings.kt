@@ -5,37 +5,26 @@ import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.*
-import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
-class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener
+class Settings : AppCompatActivity(), CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener
 {
     private val prefsFilename = "com.memory.settings.prefs"
-    private val timeFile = "time"
-    private val triesFile = "tries"
     private val darkModeFile = "dark_mode"
     private val difficultyFile = "difficulty"
 
     private lateinit var prefs: SharedPreferences
 
-    private var time: Int = 0
-    private var tries: Int = 0
     private var darkmode: Boolean = false
     private var difficulty: String = "medium"
 
 
-    // the settings slider, switch, button and radioButtons
-    private lateinit var timeSlider: SeekBar
-    private lateinit var triesSlider: SeekBar
+    // the settings switch, button and radioButtons
     private lateinit var darkModeSwitch: Switch
     private lateinit var menuButton: Button
     private lateinit var difficultyButtons: RadioGroup
-
-    // the textView above the sliders
-    private lateinit var timeText: TextView
-    private lateinit var triesText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -44,28 +33,17 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
 
         prefs = getSharedPreferences(prefsFilename, 0)
 
-        time = prefs.getInt(timeFile, 130)
-        tries = prefs.getInt(triesFile, 30)
         // 0: lightmode, 1: darkmode
         darkmode = prefs.getBoolean(darkModeFile, false)
         difficulty = prefs.getString(difficultyFile, "medium").toString()
 
         // the settings slider, switch and button
-        timeSlider = findViewById(R.id.time_slider)
-        triesSlider = findViewById(R.id.tries_slider)
         darkModeSwitch = findViewById(R.id.dark_mode_switch)
         menuButton = findViewById(R.id.menu_button_settings)
         difficultyButtons = findViewById(R.id.difficultyRadioGroup)
 
-        // the textView above the sliders
-        timeText = findViewById(R.id.time_slider_text)
-        triesText = findViewById(R.id.tries_slider_text)
 
-        // update sliders, switch and textView to data from prefs
-        timeSlider.progress = time
-        triesSlider.progress = tries
-        timeText.text = "Time: $time"
-        triesText.text = "Tries: $tries"
+        // update switch and textView to data from prefs
         darkModeSwitch.isChecked = darkmode
 
         when(difficulty) {
@@ -75,9 +53,7 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
             else -> {findViewById<RadioButton>(R.id.radioButtonEasy).isChecked = true}
         }
 
-        // add listeners to the sliders, switch and button
-        timeSlider.setOnSeekBarChangeListener(this)
-        triesSlider.setOnSeekBarChangeListener(this)
+        // add listeners to the switch and button
         darkModeSwitch.setOnCheckedChangeListener(this)
         menuButton.setOnClickListener {returnToMenu()}
         difficultyButtons.setOnCheckedChangeListener(this)
@@ -87,22 +63,7 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
         // force portrait mode
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
-    // write change to file when one of the sliders change
-    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean)
-    {
-        if (seekBar != null) when (seekBar.id) {
-            R.id.time_slider -> {
-                time = seekBar.progress
-                timeText.text = "Time: $time"
-                prefs.edit().putInt(timeFile, time).apply()
-            }
-            R.id.tries_slider -> {
-                tries = seekBar.progress
-                triesText.text = "Tries: $tries"
-                prefs.edit().putInt(triesFile, tries).apply()
-            }
-        }
-    }
+
     // write changes of the switch to file
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean)
     {
@@ -144,9 +105,4 @@ class Settings : AppCompatActivity(), OnSeekBarChangeListener, CompoundButton.On
         }
         prefs.edit().putString(difficultyFile, difficulty).apply()
     }
-
-    // these functions have to implemented for the seekbars
-    override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-    override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-
 }
