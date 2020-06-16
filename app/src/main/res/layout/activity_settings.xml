@@ -12,14 +12,13 @@
         android:id="@+id/dark_mode_switch"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:checked="false"
         android:hapticFeedbackEnabled="false"
         android:text="Dark mode"
         android:textColor="@color/textColorForDark"
-        android:textSize="24sp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/difficultyRadioGroup" />
 
@@ -27,10 +26,10 @@
         android:id="@+id/settings_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="Settings"
         android:textColor="@color/textColorForDark"
-        android:textSize="36sp"
+        android:textSize="64sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,34 +50,38 @@
 
     <RadioGroup
         android:id="@+id/difficultyRadioGroup"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numTilesTv"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/numTilesTv">
 
         <RadioButton
             android:id="@+id/radioButtonEasy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
+            android:buttonTint="@color/colorAccent"
             android:text=" 18"
             android:textColor="@color/textColorForDark"
-            android:buttonTint="@color/colorAccent"/>
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radioButtonMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
+            android:buttonTint="@color/colorAccent"
             android:text=" 28"
             android:textColor="@color/textColorForDark"
-            android:buttonTint="@color/colorAccent"/>
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radioButtonHard"
@@ -88,21 +91,21 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:buttonTint="@color/colorAccent"
             android:text=" 40"
             android:textColor="@color/textColorForDark"
-            android:buttonTint="@color/colorAccent"/>
+            android:textSize="24sp" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/numTilesTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
         android:text="Number of tiles"
         android:textColor="@color/textColorForDark"
-        android:textSize="24sp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_text" />
 

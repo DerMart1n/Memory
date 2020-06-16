@@ -26,7 +26,7 @@ class GameHard : AppCompatActivity() {
     private var prefs: SharedPreferences? = null
 
 
-    private var secondsUsed: Int = 0
+    private var secondsUsed: Int = -1
     // flipping two cards counts as one try
     private var triesUsed: Int = 0
 
